@@ -1,7 +1,7 @@
 import warnings
 warnings.filterwarnings("ignore", message="Unverified HTTPS request")
 
-import subprocess, argparse, json, re, asyncio, os, yaml, gc, time, random, requests
+import subprocess, argparse, json, httpx, re, asyncio, os, yaml, gc, time, random, requests
 from colorama import Fore, Style, init
 from tqdm import tqdm
 

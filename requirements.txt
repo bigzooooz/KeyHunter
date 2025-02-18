@@ -1,4 +1,3 @@
-httpx
 pyyaml
 requests
 colorama

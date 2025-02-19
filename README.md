@@ -1,3 +1,7 @@
+Here’s the updated `README.md` file to reflect the changes in the new codebase, including the ability to scan multiple domains from an external file:
+
+---
+
 # KeyHunter 🕵️‍♂️
 
 **KeyHunter** is a powerful tool designed to discover API key leaks from subdomains and archived URLs. It automates the process of subdomain enumeration, URL collection, and API key detection, making it an essential tool for security researchers and bug bounty hunters.
@@ -14,6 +18,7 @@
 - **Customizable Patterns**: Supports YAML-based patterns for detecting API keys from various providers.
 - **Exclusion List**: Allows exclusion of specific file extensions to focus on relevant URLs.
 - **Focused Reporting**: Saves results in a structured JSON format, focusing on the domain and detected API keys.
+- **Multiple Domain Support**: Accepts a list of domains from an external file for batch scanning.
 
 ---
 
@@ -54,21 +59,26 @@
 
 ### Basic Usage
 
-To scan a domain for API key leaks:
+To scan a single domain for API key leaks:
 ```bash
 python keyhunter.py -d example.com
 ```
 
+To scan multiple domains from a file:
+```bash
+python keyhunter.py -f domains.txt
+```
+
 ### Disable Subdomain Enumeration
 
-To scan only the provided domain without enumerating subdomains:
+To scan only the provided domain(s) without enumerating subdomains:
 ```bash
 python keyhunter.py -d example.com --no-subs
 ```
 
 ### Output
 
-The tool will generate a JSON file in the `output` directory containing the results of the scan, including:
+The tool will generate a JSON file in the `output` directory for each domain, containing the results of the scan, including:
 - The target domain
 - Detected API keys
 

@@ -241,6 +241,15 @@ async def main():
     """ + Style.RESET_ALL)
 
     time.sleep(1)
+    print(Fore.YELLOW + "-"*50)
+    print(Fore.YELLOW + "If you find this tool useful, consider supporting me:")
+    print(Fore.YELLOW + "PayPal: https://paypal.me/b4zb0z")
+    print(Fore.YELLOW + "Ko-fi: https://ko-fi.com/b4zb0z")
+    print(Fore.YELLOW + "Thank you, your support is greatly appreciated! ❤️")
+    print(Fore.YELLOW + "-"*50)
+    print("")
+    time.sleep(2)
+
     if VERSION != GITHUB_VERSION:
         print(Fore.YELLOW + f"[!] A new version of KeyHunter is available. Please update to v{GITHUB_VERSION} using '--update' flag.") 
         print("")
@@ -330,15 +339,6 @@ async def main():
             urls.extend(run_waybackurls(domain))
 
         print(Fore.GREEN + f"[+] Found {len(urls)} URLs 🎯")
-        print("")
-
-        print(Fore.YELLOW + "-"*50)
-        print(Fore.YELLOW + "While you're here, consider supporting the developer:")
-        print(Fore.YELLOW + "PayPal: https://paypal.me/b4zb0z")
-        print(Fore.YELLOW + "Ko-fi: https://ko-fi.com/b4zb0z")
-        print(Fore.YELLOW + "Thank you, your support is greatly appreciated! ❤️")
-        print(Fore.YELLOW + "-"*50)
-        print("")
 
         print(Fore.WHITE + "[+] Scanning URLs for API key leaks... This may take a while.")
 

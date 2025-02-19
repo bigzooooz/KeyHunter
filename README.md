@@ -1,5 +1,3 @@
-Here’s the updated `README.md` file to reflect the changes in the new codebase, including the ability to scan multiple domains from an external file:
-
 ---
 
 # KeyHunter 🕵️‍♂️

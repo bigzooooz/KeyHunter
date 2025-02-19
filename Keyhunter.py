@@ -315,13 +315,12 @@ async def main():
 
     for domain in domains:
         urls = []
-
+        print(Fore.WHITE + "-"*50)
+        print("")
         print(Fore.WHITE + f"- Target: {domain}")
         print(Fore.WHITE + f"- Subdomains: {'✔️' if with_subs else '❌'}")
         print(Fore.WHITE + f"- Cookie: {'✔️'  if cookie else '❌'}")
         print(Fore.WHITE + f"- X-Request-For: {X_REQUEST_FOR if X_REQUEST_FOR else '❌'}")
-        print("")
-        print(Fore.WHITE + "-"*50)
         print("")
 
         if with_subs:

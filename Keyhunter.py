@@ -249,7 +249,8 @@ async def main():
 
     parser.usage = "Keyhunter.py -d TARGET_DOMAIN [--cookie COOKIE] [--no-subs]"
 
-    parser.add_argument("-d", "--domain", help="Target domain for scanning.", required=True)
+    parser.add_argument("-d", "--domain", help="Target domain for scanning.")
+    parser.add_argument("-f", "--file", help="File containing a list of domains to scan.")
     parser.add_argument("-ns", "--no-subs", help="Disable subdomain enumeration.", action="store_true")
     parser.add_argument("--cookie", help="Cookie to use for requests.")
     parser.add_argument("--x-request-for", help="X-Request-For header to use for requests. (i.e. --x-request-for HackerOne)")
@@ -289,56 +290,70 @@ async def main():
     if args.no_subs:
         with_subs = False
 
-    domain = args.domain
-    urls = []
-
-    print(Fore.WHITE + f"- Target: {domain}")
-    print(Fore.WHITE + f"- Subdomains: {'✔️' if with_subs else '❌'}")
-    print(Fore.WHITE + f"- Cookie: {'✔️'  if cookie else '❌'}")
-    print(Fore.WHITE + f"- X-Request-For: {X_REQUEST_FOR if X_REQUEST_FOR else '❌'}")
-    print("")
-    print(Fore.WHITE + "-"*50)
-    print("")
-
-    if with_subs:
-        print(Fore.WHITE + "[+] Looking for subdomains ...")
-        subdomains = [domain] + list(run_subfinder(domain))
-        print(Fore.GREEN + f"[+] Found {len(subdomains)} subdomains 🎯")
-        print(Fore.WHITE + "[+] Looking for URLs ...")
-        for subdomain in subdomains:
-            urls.extend(run_waybackurls(subdomain))
-
-        subdomains = None
-        gc.collect()
+    domains = []
+    if args.domain:
+        domains.append(args.domain)
+    elif args.file:
+        try:
+            with open(args.file, 'r') as file:
+                domains = [line.strip() for line in file if line.strip()]
+        except Exception as e:
+            print(Fore.RED + f"[-] Error reading domains from file: {e}")
+            exit(1)
     else:
-        print(Fore.WHITE + "[+] Looking for URLs ...")
-        urls.extend(run_waybackurls(domain))
+        print(Fore.RED + "[-] Please provide either a domain or a file containing domains.")
+        exit(1)
 
-    print(Fore.GREEN + f"[+] Found {len(urls)} URLs 🎯")
-    print("")
+    for domain in domains:
+        urls = []
 
-    print(Fore.YELLOW + "-"*50)
-    print(Fore.YELLOW + "While you're here, consider supporting the developer:")
-    print(Fore.YELLOW + "PayPal: https://paypal.me/b4zb0z")
-    print(Fore.YELLOW + "Ko-fi: https://ko-fi.com/b4zb0z")
-    print(Fore.YELLOW + "Thank you, your support is greatly appreciated! ❤️")
-    print(Fore.YELLOW + "-"*50)
-    print("")
+        print(Fore.WHITE + f"- Target: {domain}")
+        print(Fore.WHITE + f"- Subdomains: {'✔️' if with_subs else '❌'}")
+        print(Fore.WHITE + f"- Cookie: {'✔️'  if cookie else '❌'}")
+        print(Fore.WHITE + f"- X-Request-For: {X_REQUEST_FOR if X_REQUEST_FOR else '❌'}")
+        print("")
+        print(Fore.WHITE + "-"*50)
+        print("")
 
-    print(Fore.WHITE + "[+] Scanning URLs for API key leaks... This may take a while.")
+        if with_subs:
+            print(Fore.WHITE + "[+] Looking for subdomains ...")
+            subdomains = [domain] + list(run_subfinder(domain))
+            print(Fore.GREEN + f"[+] Found {len(subdomains)} subdomains 🎯")
+            print(Fore.WHITE + "[+] Looking for URLs ...")
+            for subdomain in subdomains:
+                urls.extend(run_waybackurls(subdomain))
 
-    output_file = f"output/{domain}_results.json"
-    api_keys_found = await visit_and_check_for_keys(urls, domain, output_file)
+            subdomains = None
+            gc.collect()
+        else:
+            print(Fore.WHITE + "[+] Looking for URLs ...")
+            urls.extend(run_waybackurls(domain))
 
-    print(Fore.WHITE + f"[+] Scanned {len(urls)} URLs.")
+        print(Fore.GREEN + f"[+] Found {len(urls)} URLs 🎯")
+        print("")
 
-    if api_keys_found:
-        print(Fore.GREEN + f"[+] Found {api_keys_found} URLs with API keys.")
-    else:
-        print(Fore.YELLOW + "[-] No API keys found.")
-    
-    print(Fore.WHITE + "[+] Done! 🎉")
-    print("")
+        print(Fore.YELLOW + "-"*50)
+        print(Fore.YELLOW + "While you're here, consider supporting the developer:")
+        print(Fore.YELLOW + "PayPal: https://paypal.me/b4zb0z")
+        print(Fore.YELLOW + "Ko-fi: https://ko-fi.com/b4zb0z")
+        print(Fore.YELLOW + "Thank you, your support is greatly appreciated! ❤️")
+        print(Fore.YELLOW + "-"*50)
+        print("")
+
+        print(Fore.WHITE + "[+] Scanning URLs for API key leaks... This may take a while.")
+
+        output_file = f"output/{domain}_results.json"
+        api_keys_found = await visit_and_check_for_keys(urls, domain, output_file)
+
+        print(Fore.WHITE + f"[+] Scanned {len(urls)} URLs.")
+
+        if api_keys_found:
+            print(Fore.GREEN + f"[+] Found {api_keys_found} URLs with API keys.")
+        else:
+            print(Fore.YELLOW + "[-] No API keys found.")
+        
+        print(Fore.WHITE + "[+] Done! 🎉")
+        print("")
 
 if __name__ == "__main__":
     asyncio.run(main())

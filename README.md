@@ -69,7 +69,7 @@
 
 5. **Run KeyHunter**:
    ```bash
-   python keyhunter.py -d example.com
+   python KeyHunter.py -d example.com
    ```
 
 ---
@@ -80,19 +80,19 @@
 
 To scan a single domain for API key leaks:
 ```bash
-python keyhunter.py -d example.com
+python KeyHunter.py -d example.com
 ```
 
 To scan multiple domains from a file:
 ```bash
-python keyhunter.py -f domains.txt
+python KeyHunter.py -f domains.txt
 ```
 
 ### Disable Subdomain Enumeration
 
 To scan only the provided domain(s) without enumerating subdomains:
 ```bash
-python keyhunter.py -d example.com --no-subs
+python KeyHunter.py -d example.com --no-subs
 ```
 
 ### Output

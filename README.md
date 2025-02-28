@@ -1,6 +1,7 @@
 <a href="https://paypal.me/b4zb0z"><img src="https://shields.io/badge/paypal-Support_on_Paypal-blue?logo=paypal&style=for-the-badgePaypal" /></a> 
 <a href="https://ko-fi.com/b4zb0z"><img src="https://shields.io/badge/KoFi-Buy_Me_a_coffee-blue?logo=ko-fi&style=for-the-badgeKofi" /></a> 
 
+
 ---
 
 # KeyHunter 🕵️‍♂️
@@ -196,3 +197,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 <qoute>
   Disclaimer: This tool is intended for educational and research purposes only. The author is not responsible for any misuse or damage caused by this tool. Use responsibly and do not violate any laws or policies.
 </qoute>
+
+---
+
+![Visitor Count](https://profile-counter.glitch.me/{bigzooooz-KeyHunter}/count.svg)
+

@@ -20,7 +20,9 @@
 - **Exclusion List**: Allows exclusion of specific file extensions to focus on relevant URLs.
 - **Focused Reporting**: Saves results in a structured JSON format, focusing on the domain and detected API keys.
 - **Multiple Domain Support**: Accepts a list of domains from an external file for batch scanning.
-
+- **X-Request-For Header**: Supports custom headers for Bug Bounty programs that require a specific header.
+- **Cookie Authentication**: Allows authenticated requests by providing a cookie for the target domain.
+- **Random User-Agent**: Uses a random User-Agent for each request to avoid detection and blocking.
 
 ---
 
@@ -69,7 +71,7 @@
 
 5. **Run KeyHunter**:
    ```bash
-   python KeyHunter.py -d example.com
+   python Keyhunter.py -d example.com
    ```
 
 ---
@@ -80,19 +82,19 @@
 
 To scan a single domain for API key leaks:
 ```bash
-python KeyHunter.py -d example.com
+python Keyhunter.py -d example.com
 ```
 
 To scan multiple domains from a file:
 ```bash
-python KeyHunter.py -f domains.txt
+python Keyhunter.py -f domains.txt
 ```
 
 ### Disable Subdomain Enumeration
 
 To scan only the provided domain(s) without enumerating subdomains:
 ```bash
-python KeyHunter.py -d example.com --no-subs
+python Keyhunter.py -d example.com --no-subs
 ```
 
 ### Output

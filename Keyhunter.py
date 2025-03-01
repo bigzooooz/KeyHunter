@@ -11,7 +11,7 @@ VERBOSE = False
 BATCH_SIZE = 5000 
 cookie = ""
 VERSION = open("version.txt", "r").read().strip()
-GITHUB_VERSION = requests.get("https://github.com/bigzooooz/KeyHunter/blob/main/version.txt", verify=False).text.strip()
+GITHUB_VERSION = requests.get("https://raw.githubusercontent.com/bigzooooz/KeyHunter/refs/heads/main/version.txt", verify=False).text.strip()
 if GITHUB_VERSION == "404: Not Found":
     GITHUB_VERSION = VERSION
 

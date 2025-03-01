@@ -39,7 +39,7 @@
 | **Slack Webhook URL** | **Twitter Access Token** | **Twitter OAuth Token** | **Laravel Environment Variables** | **Alibaba Cloud Access Key** |  
 | **Grafana API Key** | **OpenAI API Key** | **Postman API Key** | **GitLab CI/CD Token** | **OAuth2 Bearer Token** |  
 | **Grafana Service Account Token** | **Discord Webhook URL** | **Heroku API Key** | **Instagram API Token** | **Microsoft Azure API Key** |  
-| **Vercel API Token** | **Shopify Storefront Access Token** | **Shopify Access Token** | | |
+| **Vercel API Token** | **Shopify Access Token** | | | |
 
 
 ---

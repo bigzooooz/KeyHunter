@@ -53,6 +53,5 @@ api_keys:
   Instagram API Token: "\\bIGQVJ[A-Za-z0-9]{80}\\b"
   Microsoft Azure API Key: "\\bazure[A-Za-z0-9]{48}\\b"
   Vercel API Token: "\\bvercel_[A-Za-z0-9]{40}\\b"
-  Shopify Storefront Access Token : "\\b[xX]-[sS]hopify-[sS]tore[fF]ront-[aA]ccess-[tT]oken: [0-9a-f]{32}\\b"
-  Shopify Access Token : "\\b[xX]-[sS]hopify-[aA]ccess-[tT]oken: [0-9a-f]\\b"
+  Shopify Access Token : "[xX]-[sS]hopify-([sS]torefront-)?[aA]ccess-[tT]oken(\"?)\\s*(?:[:=>]?\\s*\"?([0-9a-f]{32})\"?)?"
 

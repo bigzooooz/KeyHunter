@@ -274,6 +274,7 @@ async def main():
     if args.update:
         if VERSION != GITHUB_VERSION:
             print(Fore.WHITE + "[+] Updating KeyHunter to the latest version...")
+            subprocess.run(["git", "fetch"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             subprocess.run(["git", "pull"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             print(Fore.GREEN + "[+] KeyHunter updated successfully. Please re-run the tool.")
             print(Fore.YELLOW + "[!] Exiting...")

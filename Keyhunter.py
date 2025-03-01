@@ -147,19 +147,22 @@ def fetch_url(url):
         headers["X-Request-For"] = X_REQUEST_FOR
 
     try:
-        response = requests.get(url, headers=headers, cookies=cookie, timeout=5, verify=False)
+        with requests.get(url, headers=headers, cookies=cookie, timeout=5, verify=False, stream=True) as response:
+            if response.status_code != 200:
+                if VERBOSE:
+                    print(Fore.YELLOW + f"[-] Non-200 status {response.status_code} for {url}")
+                return None, None
 
-        if response.status_code == 200:
             content_type = response.headers.get("Content-Type", "").lower()
 
-            if VERBOSE:
-                print(Fore.WHITE + f"[+] Fetched {url}")
-
             if any(t in content_type for t in ["text/html", "application/javascript", "text/javascript", "application/json"]):
-                return url, response.text
-        else:
-            if VERBOSE:
-                print(Fore.YELLOW + f"[-] Non-200 status code {response.status_code} for {url}")
+                content = ""
+                for chunk in response.iter_content(chunk_size=1024):  
+                    content += chunk.decode(errors="ignore")
+                    if len(content) > 500_000: 
+                        break
+
+                return url, content
 
     except requests.exceptions.Timeout:
         if VERBOSE:
@@ -172,6 +175,7 @@ def fetch_url(url):
             print(Fore.YELLOW + f"[-] Unexpected error for {url}: {e}")
 
     return None, None
+
 
 async def visit_and_check_for_keys(urls, domain, output_file):
     api_keys_found = 0

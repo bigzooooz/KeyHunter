@@ -27,20 +27,19 @@
 
 ---
 
-## Supported API Key Patterns 🗝️  
+## Supported API Key Patterns 🗝️
 
-| **Cloudinary URL** | **Firebase URL** | **Firebase Bucket** | **Firebase Database** | **Slack Token** |  
-|--------------------|-----------------|--------------------|--------------------|--------------|  
-| **PGP Private Key Block** | **Amazon AWS Access Key ID** | **Amazon MWS Auth Token** | **AWS API Key** | **Facebook Access Token** |  
-| **Facebook OAuth Token** | **GitHub Token** | **Generic API Key** | **Generic Secret Key** | **Google OAuth Access Token** |  
-| **MailChimp API Key** | **Mailgun API Key** | **Stripe API Key** | **Square Access Token** | **Square OAuth Secret** |  
-| **Twilio API Key** | **Telegram Bot API Token** | **GitLab Personal Access Token** | **NPM Access Token** | **Dropbox API Key** |  
-| **SendGrid API Key** | **Mapbox API Token** | **Password in URL** | **PayPal Braintree Access Token** | **Picatic API Key** |  
-| **Slack Webhook URL** | **Twitter Access Token** | **Twitter OAuth Token** | **Laravel Environment Variables** | **Alibaba Cloud Access Key** |  
-| **Grafana API Key** | **OpenAI API Key** | **Postman API Key** | **GitLab CI/CD Token** | **OAuth2 Bearer Token** |  
-| **Grafana Service Account Token** | **Discord Webhook URL** | **Heroku API Key** | **Instagram API Token** | **Microsoft Azure API Key** |  
-| **Vercel API Token** | **Shopify Access Token** | | | |
-
+| Cloudinary       | Firebase URL       | Firebase Bucket    | Firebase Database   | Slack Token         |
+|------------------|--------------------|--------------------|---------------------|---------------------|
+| PGP Private Key  | AWS Access Key     | Amazon MWS Token   | Facebook Token      | Facebook OAuth      |
+| GitHub Token     | Generic API Key    | Generic Secret     | Google OAuth        | MailChimp           |
+| Mailgun          | Stripe             | Square Token       | Square Secret       | Twilio              |
+| Telegram         | GitLab PAT         | NPM Token          | Dropbox             | SendGrid            |
+| Mapbox           | URL Password       | PayPal Braintree   | Picatic             | Slack Webhook       |
+| Laravel ENV      | Alibaba Cloud      | Grafana API        | OpenAI              | Postman             |
+| GitLab CI/CD     | OAuth2 Bearer      | Grafana SA Token   | Discord Webhook     | Heroku              |
+| Instagram        | Microsoft Azure    | Vercel             | Shopify             | JWT                 |
+| RSA Private Key  |                    |                    |                     |                     |
 
 ---
 

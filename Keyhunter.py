@@ -119,7 +119,7 @@ def search_for_api_keys(content, url, domain, output_file):
     for provider, pattern in api_key_patterns.items():
         matches = set(pattern.findall(content))
         if matches:
-            keys_found[provider] = list(matches)
+            keys_found[provider] = { 'keys': list(matches) }
             print(Fore.GREEN + f"[+] Found {provider}.")
             print(Fore.GREEN + f"    - URL: {url}")
             print(Fore.GREEN + "-"*50)
@@ -127,6 +127,7 @@ def search_for_api_keys(content, url, domain, output_file):
             
             save_results(domain, {url: keys_found}, output_file, incremental=True)
     return keys_found
+
 
 def fetch_url(url):
     global cookie
@@ -205,14 +206,23 @@ def save_results(domain, api_keys_found, output_file, incremental=False):
         except FileNotFoundError:
             existing_data = {"domain": domain, "api_keys_found": {}}
 
-        existing_data["api_keys_found"].update(api_keys_found)
+        for url, key_data in api_keys_found.items():
+            if url not in existing_data["api_keys_found"]:
+                existing_data["api_keys_found"][url] = {}
+            for provider, data in key_data.items():
+                if provider not in existing_data["api_keys_found"][url]:
+                    existing_data["api_keys_found"][url][provider] = {'keys': []}
+                existing_data["api_keys_found"][url][provider]['keys'].extend(data['keys'])
+
 
         with open(output_file, "w") as f:
             json.dump(existing_data, f, indent=4)
 
     else:
+        
+        output_data = {"domain": domain, "api_keys_found": api_keys_found}
         with open(output_file, "w") as f:
-            json.dump({"domain": domain, "api_keys_found": api_keys_found}, f, indent=4)
+            json.dump(output_data, f, indent=4)
 
         print(Fore.WHITE + f"[+] Results saved to ./{output_file}")
 
@@ -254,7 +264,7 @@ async def main():
     print("")
     time.sleep(2)
 
-    if VERSION != GITHUB_VERSION:
+    if VERSION < GITHUB_VERSION:
         print(Fore.YELLOW + f"[!] A new version of KeyHunter is available. Please update to v{GITHUB_VERSION} using '--update' flag.") 
         print("")
 

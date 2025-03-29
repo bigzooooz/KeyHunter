@@ -117,14 +117,23 @@ excluded_extensions = load_excluded_extensions("excluded_extensions.yaml")
 def search_for_api_keys(content, url, domain, output_file):
     keys_found = {}
     for provider, pattern in api_key_patterns.items():
-        matches = set(pattern.findall(content))
+        matches = pattern.findall(content)
         if matches:
-            keys_found[provider] = { 'keys': list(matches) }
-            print(Fore.GREEN + f"[+] Found {provider}.")
-            print(Fore.GREEN + f"    - URL: {url}")
+            unique_matches = []
+            seen = set()
+            for match in matches:
+                if match not in seen:
+                    seen.add(match)
+                    unique_matches.append(match)
+            
+            keys_found[provider] = {'keys': unique_matches}
+            
+            print(Fore.GREEN + f"[+] Found {provider}:")
+            for key in unique_matches:
+                print(Fore.GREEN + f"    - {key}")
+            print(Fore.GREEN + f"    URL: {url}")
             print(Fore.GREEN + "-"*50)
 
-            
             save_results(domain, {url: keys_found}, output_file, incremental=True)
     return keys_found
 
@@ -208,23 +217,27 @@ def save_results(domain, api_keys_found, output_file, incremental=False):
 
         for url, key_data in api_keys_found.items():
             if url not in existing_data["api_keys_found"]:
-                existing_data["api_keys_found"][url] = {}
+                existing_data["api_keys_found"][url] = {} # Ensure it's a dictionary
+
             for provider, data in key_data.items():
                 if provider not in existing_data["api_keys_found"][url]:
                     existing_data["api_keys_found"][url][provider] = {'keys': []}
-                existing_data["api_keys_found"][url][provider]['keys'].extend(data['keys'])
 
+                if isinstance(data['keys'], list):
+                    existing_data["api_keys_found"][url][provider]['keys'].extend(data['keys'])
+                else:
+                    existing_data["api_keys_found"][url][provider]['keys'].append(data['keys'])
 
         with open(output_file, "w") as f:
             json.dump(existing_data, f, indent=4)
 
     else:
-        
         output_data = {"domain": domain, "api_keys_found": api_keys_found}
         with open(output_file, "w") as f:
             json.dump(output_data, f, indent=4)
 
         print(Fore.WHITE + f"[+] Results saved to ./{output_file}")
+
 
 async def main():
     global with_subs

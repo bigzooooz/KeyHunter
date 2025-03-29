@@ -30,8 +30,6 @@ api_keys:
   PayPal Braintree Access Token: "\\baccess_token\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}\\b"
   Picatic API Key: "\\bsk_live_[0-9a-z]{32}\\b"
   Slack Webhook: "\\bhttps://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}\\b"
-  Twitter Access Token: "\\b[t|T][w|W][i|I][t|T][t|T][e|E][r|R].*[1-9][0-9]+-[0-9a-zA-Z]{40}\\b"
-  Twitter OAuth: "\\b[t|T][w|W][i|I][t|T][t|T][e|E][r|R].*['|\"][0-9a-zA-Z]{35,44}['|\"]\\b"
   Generic API Key 2: "(?i)(api_key|apikey)(.{0,20})?['|\"][0-9a-zA-Z]{32,45}['|\"]"
   Laravel Environment Variables:
       "APP_KEY": "\\bAPP_KEY=base64:[a-zA-Z0-9+/=]+\\b"

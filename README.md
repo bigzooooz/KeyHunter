@@ -1,6 +1,6 @@
 <a href="https://paypal.me/b4zb0z"><img src="https://shields.io/badge/paypal-Support_on_Paypal-blue?logo=paypal&style=for-the-badgePaypal" /></a> 
 <a href="https://ko-fi.com/b4zb0z"><img src="https://shields.io/badge/KoFi-Buy_Me_a_coffee-blue?logo=ko-fi&style=for-the-badgeKofi" /></a> 
- [![GitHub All Releases](https://img.shields.io/github/downloads/bigzooooz/KeyHunter/total?color=blue&label=Downloads)](https://github.com/bigzooooz/KeyHunter/releases/latest)
+ <!-- [![GitHub All Releases](https://img.shields.io/github/downloads/bigzooooz/KeyHunter/total?color=blue&label=Downloads)](https://github.com/bigzooooz/KeyHunter/releases/latest) -->
 
 ---
 

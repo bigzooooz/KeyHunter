@@ -37,6 +37,7 @@ api_keys:
       "Mail Credentials": "\\bMAIL_USERNAME=['\"]?[a-zA-Z0-9._%+-]+['\"]?\\b|\\bMAIL_PASSWORD=['\"]?[a-zA-Z0-9!@#$%^&*()_+=-]+['\"]?\\b"
       "AWS Credentials": "\\bAWS_ACCESS_KEY_ID=['\"]?[A-Z0-9]{20}['\"]?\\b|\\bAWS_SECRET_ACCESS_KEY=['\"]?[A-Za-z0-9/+=]{40}['\"]?\\b"
       "Meilisearch Host": "\\bMEILISEARCH_HOST=['\"]?http[s]?://[a-zA-Z0-9.:/-]+['\"]?\\b"
+  React App Environment Variables: "\\bREACT_APP_[A-Z0-9_]+=['\"][^'\"]+['\"]\\b"
   Alibaba Cloud Access Key: "\\bLTAI[0-9A-Za-z]{20}\\b"
   Grafana API Key: "\\beyJrIjoi[0-9a-zA-Z]{70,}=\\b"
   OpenAI API Key: "\\bsk-[0-9a-zA-Z]{48}\\b"

@@ -39,7 +39,7 @@
 | Laravel ENV      | Alibaba Cloud      | Grafana API        | OpenAI              | Postman             |
 | GitLab CI/CD     | OAuth2 Bearer      | Grafana SA Token   | Discord Webhook     | Heroku              |
 | Instagram        | Microsoft Azure    | Vercel             | Shopify             | JWT                 |
-| RSA Private Key  |                    |                    |                     |                     |
+| RSA Private Key  | React App ENV      |                    |                     |                     |
 
 ---
 
